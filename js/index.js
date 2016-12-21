@@ -3,6 +3,7 @@
 
 "use strict";
 
+// One global variable CALC = {} for entire application
 const CALC = {};
 CALC.inputs = [];
 CALC.lastResult = undefined;
