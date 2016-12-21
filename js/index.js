@@ -19,8 +19,13 @@ function whenClicked(clickedId) {
   // Function that updates our inputs on screen
   function update() {
     CALC.operationsUpdate.value = CALC.inputs.join("");
-    CALC.screenUpdate.value = CALC.lastResult;
-    // Scrolling HTML textbox to right
+    // To avoid undefined when using CE before first getTotal
+    if (CALC.lastResult === undefined) {
+      CALC.screenUpdate.value = "...";
+    } else {
+      CALC.screenUpdate.value = CALC.lastResult;
+    }
+    // Scrolling HTML textbox to right when have many digits on screen
     CALC.operationsUpdate.scrollLeft = CALC.operationsUpdate.scrollWidth;
     CALC.screenUpdate.scrollLeft = CALC.screenUpdate.scrollWidth;
   }
@@ -86,7 +91,7 @@ function whenClicked(clickedId) {
   }
   
   // Function that prints object with global variables to console log each
-  // time user hits any calculator button
+  // time user hits any calculator button - useful for checking CALC behavior
   (function consoleLogPrinter() {
     console.log(CALC);
   }());
