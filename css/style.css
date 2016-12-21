@@ -1,15 +1,12 @@
 body {
   background: #b6c5e3;
   font-family: 'Roboto', sans-serif;
+  margin-top: 3em;
 }
 
 #calculator {
   width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  margin-left: 30px;
+  margin: 0 auto;
 }
 
 #display {
@@ -65,6 +62,17 @@ body {
   padding: 20px;
 }
 
+button {
+  font-size: 2em;
+  background: #0e111c;
+  color: #fff;
+  border: none;
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 2em;
+  float: left;
+}
+
 #deleteAll:hover{
   background: #e34444;
 }
@@ -73,11 +81,9 @@ body {
   background: #00aed3;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  justify-content: center;
+button:hover {
+  background: #141827;
+  color: #fff;
 }
 
 .row {
@@ -91,21 +97,3 @@ body {
 .three button {
   width: 50%;
 }
-
-button {
-  font-size: 2em;
-  background: #0e111c;
-  color: #fff;
-  border: none;
-  margin-left: 0px;
-  margin-right: 0px;
-  height: 2em;
-  float: left;
-}
-
-button:hover {
-  background: #141827;
-  color: #fff;
-}
-
-button:focus { outline:0 };
