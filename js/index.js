@@ -9,15 +9,15 @@ CALC.inputs = [];
 CALC.lastResult = undefined;
 CALC.operationsUpdate = document.getElementById("inTxtboxScrOper");
 CALC.screenUpdate = document.getElementById("inputTextboxScreen");
+CALC.buttons = document.querySelectorAll("[data-value]");
 
-// Function that emulates simple calculator
-// I'm sending the ID as the function parameter
-// This will send the ID (this.id from HTML) as clickedId
-function whenClicked(clickedId) {
-  // The last element in inputs array is this
-  const last = CALC.inputs[CALC.inputs.length - 1];
-  
-  // Function that updates our inputs on screen
+// Handle CALC buttons
+CALC.buttons.forEach(button => button.addEventListener('click', whenClicked));
+
+function whenClicked() {
+  const click = this.dataset.value;
+  const last = CALC.inputs[CALC.inputs.length - 1]; // The last element in inputs array
+  // Function that updates inputs on screen
   function update() {
     CALC.operationsUpdate.value = CALC.inputs.join("");
     // To avoid undefined when using CE before first getTotal
@@ -30,12 +30,10 @@ function whenClicked(clickedId) {
     CALC.operationsUpdate.scrollLeft = CALC.operationsUpdate.scrollWidth;
     CALC.screenUpdate.scrollLeft = CALC.screenUpdate.scrollWidth;
   }
-  
   // Function that does the math
   function evilAndDangerous(math) {
     return eval(math);
   }
-  
   // Function that calculates total value using evilAndDangerous function
   function getTotal() {
     // Refresh is the value of last calculation
@@ -47,23 +45,20 @@ function whenClicked(clickedId) {
     CALC.lastResult = refresh;
     CALC.screenUpdate.value = refresh;
   }
-
-  // Preventing this from happening: 1++2
-  if ((clickedId === "+" || clickedId === "-" || clickedId === "*" ||
-      clickedId === "/" || clickedId === ".") && 
-      (last === "+" || last === "-" || last === "*" || last === "/" ||
-      last === ".")) {
+  // Preventing this 1++2 from happening
+  if ((click === "+" || click === "-" || click === "*" || click === "/" ||
+      click === ".") && (last === "+" || last === "-" || last === "*" ||
+      last === "/" || last === ".")) {
     return; // Do nothing when this conditions are fulfilled
   }
-
   // Handling special buttons
-  if (clickedId === "deleteAll") {
+  if (click === "deleteAll") {
     // All Clear
     CALC.inputs = [];
     CALC.lastResult = undefined;
     CALC.operationsUpdate.value = "";
     CALC.screenUpdate.value = 0;
-  } else if (clickedId === "backOne") {
+  } else if (click === "backOne") {
     // Clear Entry
     // Only when we have something in "inputs" array we can use pop
     if (CALC.inputs.length > 0 && CALC.inputs.length === 1) {
@@ -76,7 +71,7 @@ function whenClicked(clickedId) {
       CALC.inputs.pop();
       update();
     }
-  } else if (clickedId === "total") {
+  } else if (click === "total") {
     // When there is nothing to calculate do nothing
     if ((CALC.inputs.length === 0) && (CALC.lastResult === undefined)) {
       return; // Do nothing when this conditions are fulfilled
@@ -85,16 +80,14 @@ function whenClicked(clickedId) {
     getTotal();
   } else {
     // Pushing numbers and operators to inputs array
-    CALC.inputs.push(clickedId);
+    CALC.inputs.push(click);
     update();
     // Showing last pushed button on screen
-    CALC.screenUpdate.value = clickedId;
+    CALC.screenUpdate.value = click;
   }
-  
   // Function that prints object with global variables to console log each
   // time user hits any calculator button - useful for checking CALC behavior
   (function consoleLogPrinter() {
     console.log(CALC);
   }());
-  
 }

@@ -14,7 +14,6 @@
 <link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
 
 <div class="container">
-
   <div id="calculator">
 
     <div class="row">
@@ -29,10 +28,10 @@
     </div>
 
     <div class="row">
-      <button id="deleteAll" onClick="whenClicked(this.id)">AC</button>
-      <button id="backOne" onClick="whenClicked(this.id)">CE</button>
-      <button id="." onClick="whenClicked(this.id)">.</button>
-      <button id="/" onClick="whenClicked(this.id)">&divide;</button>
+      <button data-value="deleteAll" class="button">AC</button>
+      <button data-value="backOne" class="button">CE</button>
+      <button data-value="." class="button">.</button>
+      <button data-value="/" class="button">&divide;</button>
     </div>
 
     <div class="row">
@@ -40,37 +39,28 @@
       <button data-value="8" class="button">8</button>
       <button data-value="9" class="button">9</button>
       <button data-value="*" class="button">&times;</button>
-      
-      <!--
-      <button id="7" onClick="whenClicked(this.id)">7</button>
-      <button id="8" onClick="whenClicked(this.id)">8</button>
-      <button id="9" onClick="whenClicked(this.id)">9</button>
-      <button id="*" onClick="whenClicked(this.id)">&times;</button>
-      -->
-      
     </div>
 
     <div class="row">
-      <button id="4" onClick="whenClicked(this.id)">4</button>
-      <button id="5" onClick="whenClicked(this.id)">5</button>
-      <button id="6" onClick="whenClicked(this.id)">6</button>
-      <button id="-" onClick="whenClicked(this.id)">-</button>
+      <button data-value="4" class="button">4</button>
+      <button data-value="5" class="button">5</button>
+      <button data-value="6" class="button">6</button>
+      <button data-value="-" class="button">-</button>
     </div>
 
     <div class="row">
-      <button id="1" onClick="whenClicked(this.id)">1</button>
-      <button id="2" onClick="whenClicked(this.id)">2</button>
-      <button id="3" onClick="whenClicked(this.id)">3</button>
-      <button id="+" onClick="whenClicked(this.id)">+</button>
+      <button data-value="1" class="button">1</button>
+      <button data-value="2" class="button">2</button>
+      <button data-value="3" class="button">3</button>
+      <button data-value="+" class="button">+</button>
     </div>
 
     <div class="row three">
-      <button id="0" onClick="whenClicked(this.id)">0</button>
-      <button id="total" onClick="whenClicked(this.id)">=</button>
+      <button data-value="0" class="button">0</button>
+      <button data-value="total" class="button">=</button>
     </div>
 
   </div>
-
 </div>
  
 <script src="js/index.js"></script>
