@@ -3,15 +3,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-#calculator {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  margin-left: 30px;
-}
-
 #display {
   height: 75px;
   background: #1f253e;
@@ -49,6 +40,27 @@ body {
   background: #00aed3;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: center;
+}
+
+.support {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-left: 30px;
+}
+
+.row {
+  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.8), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+  width: 300px;
+}
+
 .inputTextboxLower {
   background: #1f253e;
   width: 300px;
@@ -71,18 +83,6 @@ body {
   font-size: 1.5em;
   padding-left: 0.75em;
   padding-right: 0.75em;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  justify-content: center;
-}
-
-.row {
-  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.8), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
-  width: 300px;
 }
 
 .row button {
