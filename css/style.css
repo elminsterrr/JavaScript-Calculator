@@ -18,30 +18,6 @@ body {
   color: #fff;
 }
 
-#inputTextboxScreen {
-  background: #1f253e;
-  width: 300px;
-  border: none;
-  border-color: transparent;
-  text-align: right;
-  font-family: 'Graduate', cursive;
-  font-size: 2em;
-  padding-left: 0.50em;
-  padding-right: 0.50em;
-}
-
-#inTxtboxScrOper {
-  background: #1f253e;
-  width: 300px;
-  border: none;
-  border-color: transparent;
-  text-align: right;
-  font-family: 'Graduate', cursive;
-  font-size: 1.5em;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-
 #name {
   font-family: 'Graduate', cursive;
   font-size: 2em;
@@ -71,6 +47,30 @@ body {
 
 #total:hover{
   background: #00aed3;
+}
+
+.inputTextboxLower {
+  background: #1f253e;
+  width: 300px;
+  border: none;
+  border-color: transparent;
+  text-align: right;
+  font-family: 'Graduate', cursive;
+  font-size: 2em;
+  padding-left: 0.50em;
+  padding-right: 0.50em;
+}
+
+.inputTextboxUpper {
+  background: #1f253e;
+  width: 300px;
+  border: none;
+  border-color: transparent;
+  text-align: right;
+  font-family: 'Graduate', cursive;
+  font-size: 1.5em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
 }
 
 .container {

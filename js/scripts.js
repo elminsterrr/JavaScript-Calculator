@@ -1,4 +1,4 @@
-// JavaScript Calculator v.1.0
+// JavaScript Calculator v.2.0
 // Created by: Elminster White - elminsterthewhite@gmail.com
 
 "use strict";
@@ -7,8 +7,8 @@
 const CALC = {};
 CALC.inputs = [];
 CALC.lastResult = undefined;
-CALC.operationsUpdate = document.getElementById("inTxtboxScrOper");
-CALC.screenUpdate = document.getElementById("inputTextboxScreen");
+CALC.operationsUpdate = document.querySelector(".inputTextboxUpper");
+CALC.screenUpdate = document.querySelector(".inputTextboxLower");
 CALC.buttons = document.querySelectorAll("[data-value]");
 
 // Handle CALC buttons
