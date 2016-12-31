@@ -12,7 +12,7 @@ function Calculator(calcId) {
   CALC.operationsUpdate = oneCalc.querySelector(".inputTextboxUpper");
   CALC.screenUpdate = oneCalc.querySelector(".inputTextboxLower");
   CALC.buttons = oneCalc.querySelectorAll("[data-value]");
-  
+
   // Handle CALC buttons
   CALC.buttons.forEach(button => button.addEventListener('click', whenClicked));
 
@@ -33,16 +33,84 @@ function Calculator(calcId) {
       CALC.screenUpdate.scrollLeft = CALC.screenUpdate.scrollWidth;
     }
     // Function that does the math
-    function evilAndDangerous(math) {
-      return eval(math);
+    function calcBrain(math) {
+      console.log(math);
+      console.log(calculate(parseCalculationString(math)));
+      
+      function parseCalculationString(userString) {
+        // Parse a calculation string into an array of numbers and operators
+        let calculation = [];
+        let current = '';
+        for (let i = 0, ch; ch = userString.charAt(i); i++) {
+          if ('*/+-'.indexOf(ch) > -1) {
+            if (current === '' && ch === '-') {
+              current = '-';
+            } else {
+              calculation.push(parseFloat(current), ch);
+              current = '';
+            }
+          } else {
+            current += userString.charAt(i);
+          }
+        }
+        if (current !== '') {
+          calculation.push(parseFloat(current));
+        }
+        return calculation;
+      }
+
+      function calculate(calc) {
+        // Perform a calculation expressed as an array of operators and numbers
+        let newCalc = [];
+        let currentOp;
+        let ops = ['*', '/', '+', '-'],
+          opFunctions = [
+            function(a, b) {
+              return a * b
+            },
+
+            function(a, b) {
+              return a / b
+            },
+
+            function(a, b) {
+              return a + b
+            },
+
+            function(a, b) {
+              return a - b
+            }
+          ];
+        for (let i = 0; i < ops.length; i++) {
+          for (let j = 0; j < calc.length; j++) {
+            if (calc[j] === ops[i]) {
+              currentOp = opFunctions[i];
+            } else if (currentOp) {
+              newCalc[newCalc.length - 1] = currentOp(newCalc[newCalc.length - 1], calc[j]);
+              currentOp = null;
+            } else {
+              newCalc.push(calc[j]);
+            }
+          }
+          calc = newCalc;
+          newCalc = [];
+        }
+        if (calc.length > 1) {
+          console.log("Error: unable to resolve calculation");
+          return calc;
+        } else {
+          return calc[0];
+        }
+      }
+      return calculate(parseCalculationString(math));
     }
-    // Function that calculates total value using evilAndDangerous function
+    // Function that calculates total value using calcBrain function
     function getTotal() {
       // Refresh is the value of last calculation
       // It is always one time declared when getTotal
       // starts, and I don't reassign it when getTotal
       // is running, so I can use const
-      const refresh = evilAndDangerous(CALC.inputs.join(""));
+      const refresh = calcBrain(CALC.inputs.join(""));
       CALC.operationsUpdate.value = CALC.inputs.join("");
       CALC.lastResult = refresh;
       CALC.screenUpdate.value = refresh;
@@ -87,11 +155,14 @@ function Calculator(calcId) {
       // Showing last pushed button on screen
       CALC.screenUpdate.value = click;
     }
+    /*
+    // TESTING
     // Function that prints object with global variables to console log each
     // time user hits any calculator button - useful for checking CALC behavior
     (function consoleLogPrinter() {
       console.log(CALC);
     }());
+    */
   }
 }
 const calculator1 = new Calculator("calculator1");
