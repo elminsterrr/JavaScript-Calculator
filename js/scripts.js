@@ -5,14 +5,14 @@
 
 function Calculator(calcId) {
   const oneCalc = document.querySelector("#" + calcId);
+  // One global variable CALC = {} for entire application
   const CALC = {};
   CALC.inputs = [];
   CALC.lastResult = undefined;
   CALC.operationsUpdate = oneCalc.querySelector(".inputTextboxUpper");
   CALC.screenUpdate = oneCalc.querySelector(".inputTextboxLower");
   CALC.buttons = oneCalc.querySelectorAll("[data-value]");
-  // One global variable CALC = {} for entire application
-
+  
   // Handle CALC buttons
   CALC.buttons.forEach(button => button.addEventListener('click', whenClicked));
 

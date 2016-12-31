@@ -3,43 +3,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-#display {
-  height: 75px;
-  background: #1f253e;
-  color: #fff;
-}
-
-#name {
-  font-family: 'Graduate', cursive;
-  font-size: 2em;
-  text-align: center;
-}
-
-#created {
-  font-size: 0.70em;
-  text-align: center;
-}
-
-#title{
-  background: #0e111c;
-  font-size: 1.3em;
-  color: #fff;
-  text-align: center;
-}
-
-#title p {
-  margin: 0 auto;
-  padding: 20px;
-}
-
-#deleteAll:hover{
-  background: #e34444;
-}
-
-#total:hover{
-  background: #00aed3;
-}
-
 .container {
   display: flex;
   flex-direction: row;
@@ -59,6 +22,20 @@ body {
 .row {
   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.8), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
   width: 300px;
+}
+
+.row button {
+  width: 25%;
+}
+
+.three button {
+  width: 50%;
+}
+
+.display {
+  height: 75px;
+  background: #1f253e;
+  color: #fff;
 }
 
 .inputTextboxLower {
@@ -85,12 +62,35 @@ body {
   padding-right: 0.75em;
 }
 
-.row button {
-  width: 25%;
+.name {
+  font-family: 'Graduate', cursive;
+  font-size: 2em;
+  text-align: center;
 }
 
-.three button {
-  width: 50%;
+.created {
+  font-size: 0.70em;
+  text-align: center;
+}
+
+.title{
+  background: #0e111c;
+  font-size: 1.3em;
+  color: #fff;
+  text-align: center;
+}
+
+.title p {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.ac:hover{
+  background: #e34444;
+}
+
+.total:hover{
+  background: #00aed3;
 }
 
 button {
