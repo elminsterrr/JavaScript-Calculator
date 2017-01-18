@@ -5,7 +5,8 @@
 
 function Calculator(calcId) {
   const oneCalc = document.querySelector("#" + calcId);
-  // One global variable CALC = {} for entire application
+
+  // One global variable for one CALC
   const CALC = {};
   CALC.inputs = [];
   CALC.lastResult = undefined;
@@ -18,7 +19,8 @@ function Calculator(calcId) {
 
   function whenClicked() {
     const click = this.dataset.value;
-    const last = CALC.inputs[CALC.inputs.length - 1]; // The last element in inputs array
+    // The last element in inputs array
+    const last = CALC.inputs[CALC.inputs.length - 1];
     // Function that updates inputs on screen
     function update() {
       CALC.operationsUpdate.value = CALC.inputs.join("");
@@ -32,84 +34,18 @@ function Calculator(calcId) {
       CALC.operationsUpdate.scrollLeft = CALC.operationsUpdate.scrollWidth;
       CALC.screenUpdate.scrollLeft = CALC.screenUpdate.scrollWidth;
     }
-    // Function that does the math
-    function calcBrain(math) {
-      console.log(math);
-      console.log(calculate(parseCalculationString(math)));
-      
-      function parseCalculationString(userString) {
-        // Parse a calculation string into an array of numbers and operators
-        let calculation = [];
-        let current = '';
-        for (let i = 0, ch; ch = userString.charAt(i); i++) {
-          if ('*/+-'.indexOf(ch) > -1) {
-            if (current === '' && ch === '-') {
-              current = '-';
-            } else {
-              calculation.push(parseFloat(current), ch);
-              current = '';
-            }
-          } else {
-            current += userString.charAt(i);
-          }
-        }
-        if (current !== '') {
-          calculation.push(parseFloat(current));
-        }
-        return calculation;
-      }
-
-      function calculate(calc) {
-        // Perform a calculation expressed as an array of operators and numbers
-        let newCalc = [];
-        let currentOp;
-        let ops = ['*', '/', '+', '-'],
-          opFunctions = [
-            function(a, b) {
-              return a * b
-            },
-
-            function(a, b) {
-              return a / b
-            },
-
-            function(a, b) {
-              return a + b
-            },
-
-            function(a, b) {
-              return a - b
-            }
-          ];
-        for (let i = 0; i < ops.length; i++) {
-          for (let j = 0; j < calc.length; j++) {
-            if (calc[j] === ops[i]) {
-              currentOp = opFunctions[i];
-            } else if (currentOp) {
-              newCalc[newCalc.length - 1] = currentOp(newCalc[newCalc.length - 1], calc[j]);
-              currentOp = null;
-            } else {
-              newCalc.push(calc[j]);
-            }
-          }
-          calc = newCalc;
-          newCalc = [];
-        }
-        if (calc.length > 1) {
-          console.log("Error: unable to resolve calculation");
-          return calc;
-        } else {
-          return calc[0];
-        }
-      }
-      return calculate(parseCalculationString(math));
+    // Does the math using an extensive math library for JavaScript (math.js)
+    // This is NOT standard built-in and dangerous JavaScript eval function
+    function calcBrain(joinedInputs) {
+      math.config({
+        number: 'BigNumber',
+        precision: 64
+      });
+      return math.eval(joinedInputs);
     }
     // Function that calculates total value using calcBrain function
     function getTotal() {
       // Refresh is the value of last calculation
-      // It is always one time declared when getTotal
-      // starts, and I don't reassign it when getTotal
-      // is running, so I can use const
       const refresh = calcBrain(CALC.inputs.join(""));
       CALC.operationsUpdate.value = CALC.inputs.join("");
       CALC.lastResult = refresh;
