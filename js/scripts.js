@@ -35,7 +35,6 @@ function Calculator(calcId) {
       CALC.screenUpdate.scrollLeft = CALC.screenUpdate.scrollWidth;
     }
     // Does the math using an extensive math library for JavaScript (math.js)
-    // This is NOT standard built-in and dangerous JavaScript eval function
     function calcBrain(joinedInputs) {
       math.config({
         number: 'BigNumber',
